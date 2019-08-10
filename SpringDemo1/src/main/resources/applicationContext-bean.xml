@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ ">
+
+
+    <bean id = "abstractBean" abstract="true">
+        <property name="userName" value="zhangsan"/>
+        <property name="id" value="1"/>
+    </bean>
+    <bean id = "bean2" class="com.gxg.bean.bean2">
+        <property name="bean3" ref="bean3"/>
+        <property name="bean4" ref="bean4"/>
+        <property name="bean5" ref="bean5"/>
+    </bean>
+    <bean id = "bean3" class="com.gxg.bean.bean3" parent="abstractBean">
+        <!--<property name="userName" value="zhangsan"/>
+        <property name="id" value="1"/>-->
+        <property name="password" value = "123"/>
+    </bean>
+    <bean id="bean4" class="com.gxg.bean.bean4" parent="abstractBean">
+        <!--<property name="id" value="2"/>
+        <property name="userName" value="lisi"/>-->
+    </bean>
+    <bean id="bean5" class="com.gxg.bean.bean5">
+        <property name="age" value="18"/>
+    </bean>
+
+
+
+
+
+
+ </beans>
