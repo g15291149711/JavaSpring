@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd"
+>
+   <!--  加入Spring对AOP的支持
+        <aop:aspectj-autoproxy/>
+&lt;!&ndash;  将配置的切面类注册到spring当中 &ndash;&gt;
+
+
+&lt;!&ndash;  目标类和代理类&ndash;&gt;-->
+    <bean id="usermanage" class = "com.gxg.UserManager"/>
+
+    <bean id="myAspectForconfig" class = "com.gxg.MyAspectForConfig"/>
+
+
+    <aop:config>
+        <aop:aspect id="myAspect" ref="myAspectForconfig">
+            <aop:pointcut id="allMethod" expression="execution(* *(..))"/>
+            <aop:before method="checkSecurity" pointcut-ref="allMethod"/>
+        </aop:aspect>
+    </aop:config>
+
+
+
+
+
+
+
+</beans>
