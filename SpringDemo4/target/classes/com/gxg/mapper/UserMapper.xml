@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!--
+
+        namespace : 命名空间（必须存在）
+
+-->
+<mapper namespace="test">
+        <!--
+            映射
+            id：statementId整个select标签
+            parameterType： 输入参数，Sql语句的输入参数，赋值
+            resultType：  返回对象值，结果集
+            #{}: 变量位置 value
+        -->
+
+    <select id="queryUserById" parameterType="int" resultType="com.gxg.po.User">
+        select * from user where id = #{value};
+    </select>
+
+    <!--select username from user where username like #{value};-->
+    <select id="queryUserByName" parameterType="java.lang.String" resultType="com.gxg.po.User">
+        select username from user where username like '%${value}%';  <!--推荐使用这种模糊查询，后面查询就不需要写%号-->
+    </select>
+
+    <insert id="addUser" parameterType="com.gxg.po.User">
+        insert into user(username,address) values(#{username},#{address});
+    </insert>
+
+    <update id="updateUser" parameterType="com.gxg.po.User">
+          update user set username = #{username} where id = #{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+          delete from user where id = #{value};
+    </delete>
+</mapper>
